@@ -1,0 +1,31 @@
+>>> from app import db, User, Page
+>>> db.create_all()               
+>>> junaid= User(name='Junaid')
+>>> arman=User(name='Arman')
+>>> ashraf=User(name='ashraf')
+>>> codewithashraf=Page(name='Code With Ashraf')    
+>>> news=Page(name='Indian News')
+>>> suhail=User(name='Suhail')
+>>> db.session.add_all([junaid,arman,suhail,ashraf,codewithashraf,news]) 
+>>> db.session.commit() 
+>>> junaid.following.append(news)
+>>> junaid.following.append(codewithashraf) 
+>>> suhail.following.append(news) 
+>>> arman.following.append(news)  
+>>> arman.following.append(learn) 
+>>> ashraf.following.append(codewithashraf) 
+>>> suhail.following.append(codewithashraf)
+>>> junaid.following.append(learn)          
+>>> db.session.commit() 
+>>> news.followers
+[<User:Junaid>, <User:Suhail>, <User:Arman>]
+>>> codewithashraf.followers
+[<User:Junaid>, <User:ashraf>, <User:Suhail>]
+>>> learn.followers 
+[<User:Arman>]
+>>> suhail.following
+[<page:Indian News>, <page:Code With Ashraf>]
+>>> junaid.following              
+[<page:Indian News>, <page:Code With Ashraf>, <page:Learning>]
+>>> ashraf.following
+[<page:Code With Ashraf>]

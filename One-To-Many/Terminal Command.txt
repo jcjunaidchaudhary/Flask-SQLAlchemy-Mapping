@@ -1,0 +1,19 @@
+rom app import db, User, Notes
+>>> db.create_all()
+>>> junaid=User(name="Junaid Chaudhary")
+>>> suhail=User(name="Suhail Khan")
+>>> note1=Notes(note="Tomarrow we have submission",user=junaid) 
+>>> note2=Notes(note="Laptop I5 7gen 8gb 1tb",user=junaid)
+>>> db.session.add_all([junaid,suhail,note1,note2])
+>>> db.session.commit()
+ from app import User, Notes
+>>> junaid=User.query.filter_by(id=1).first
+>>> junaid.name
+>>> junaid=User.query.filter_by(id=1).first()
+>>> junaid.name
+'Junaid Chaudhary'
+>>> junaid.notes
+[<Note:Tomarrow we have submission>, <Note:Laptop I5 7gen 8gb 1tb>]
+>>> note1=Notes.query.filter_by(id=2).first()
+>>> note1.user
+<User:Junaid Chaudhary>

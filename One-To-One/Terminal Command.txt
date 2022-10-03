@@ -1,0 +1,17 @@
+>>> from app import db, User , Profile
+>>> db.create_all() 
+>>> jc=User(name="Junaid Chaudhary")
+>>> jcProfile=Profile(username="jc_junaid", user=jc)           
+>>> db.session.add_all([jc,jcProfile])  
+>>> db.session.commit()
+>>> jc.profile
+<Profie:jc_junaid>
+>>> jcProfile.user
+<User:Junaid Chaudhary>
+>>> jcProfile=Profile(username="jc_junaid_chaudhary", user=jc) 
+>>> db.session.add(jcProfile)           
+>>> db.session.commit()
+>>> jc.profile     
+<Profie:jc_junaid_chaudhary>
+>>> jcProfile.user                                            
+<User:Junaid Chaudhary>
